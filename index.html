@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Converter | Application</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#4486db",
+              brandDark: "#3367b0",
+            },
+            fontFamily: {
+              roboto: ["Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .currency-types li.active {
+        background-color: #ffffff;
+        color: #4486db;
+        font-weight: 700;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#f0f2f5] font-roboto text-gray-800 m-0 p-0">
+    <header
+      id="header"
+      class="flex justify-between items-center bg-white px-5 md:px-10 h-[70px] shadow-sm sticky top-0 z-50"
+    >
+      <div class="logo">
+        <h1 class="text-gray-800 text-xl font-extrabold">
+          BANK<span class="text-brand">APP</span>
+        </h1>
+      </div>
+
+      <div class="menu hidden md:block">
+        <ul class="menu-list flex gap-2">
+          <button class="exitBtn hidden">LOGOUT</button>
+          <li
+            class="menu-item px-4 py-2 font-medium text-[13px] text-gray-500 rounded-md transition duration-300 uppercase hover:text-brand hover:bg-[#eef4fc] cursor-pointer"
+          >
+            BANK
+          </li>
+          <li
+            class="menu-item px-4 py-2 font-medium text-[13px] text-gray-500 rounded-md transition duration-300 uppercase hover:text-brand hover:bg-[#eef4fc] cursor-pointer"
+          >
+            BUSINESS
+          </li>
+          <li
+            class="menu-item px-4 py-2 font-medium text-[13px] text-gray-500 rounded-md transition duration-300 uppercase hover:text-brand hover:bg-[#eef4fc] cursor-pointer"
+          >
+            INVESTMENT
+          </li>
+          <li
+            class="menu-item px-4 py-2 font-medium text-[13px] text-gray-500 rounded-md transition duration-300 uppercase hover:text-brand hover:bg-[#eef4fc] cursor-pointer"
+          >
+            INSURANCE
+          </li>
+          <li
+            class="menu-item px-4 py-2 font-medium text-[13px] text-gray-500 rounded-md transition duration-300 uppercase hover:text-brand hover:bg-[#eef4fc] cursor-pointer"
+          >
+            MOBILE
+          </li>
+          <li
+            class="menu-item px-4 py-2 font-medium text-[13px] text-gray-500 rounded-md transition duration-300 uppercase hover:text-brand hover:bg-[#eef4fc] cursor-pointer"
+          >
+            TRAVEL
+          </li>
+          <li
+            class="menu-item px-4 py-2 font-medium text-[13px] text-gray-500 rounded-md transition duration-300 uppercase hover:text-brand hover:bg-[#eef4fc] cursor-pointer"
+          >
+            ENTERTAINMENT
+          </li>
+        </ul>
+      </div>
+
+      <div class="login flex items-center gap-2">
+        <button
+          class="loginBtn px-5 py-2 bg-brand text-white rounded-md font-semibold text-xs transition hover:bg-brandDark hover:shadow-lg"
+        >
+          LOGIN
+        </button>
+        <button
+          class="viewBtn md:hidden text-2xl text-gray-700 bg-transparent border-none cursor-pointer"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="container max-w-[900px] mx-auto mt-10 px-5 mb-10">
+      <h2 class="text-center font-bold text-3xl text-slate-700 mb-8">
+        Currency Converter Online
+      </h2>
+
+      <div
+        class="converter-card bg-white p-6 md:p-10 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
+      >
+        <div
+          class="row flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <div class="col w-full flex-1">
+            <p class="label-text text-sm font-medium text-gray-400 mb-2">
+              I have
+            </p>
+
+            <ul
+              class="currency-types btnLeft flex bg-[#f1f3f6] rounded-lg p-1 mb-5"
+            >
+              <li
+                class="active flex-1 text-center p-2 text-sm font-medium text-gray-500 rounded-md transition duration-300 cursor-pointer hover:bg-white/50 hover:text-gray-800"
+                id="AZN"
+              >
+                AZN
+              </li>
+              <li
+                class="flex-1 text-center p-2 text-sm font-medium text-gray-500 rounded-md transition duration-300 cursor-pointer hover:bg-white/50 hover:text-gray-800"
+                id="USD"
+              >
+                USD
+              </li>
+              <li
+                class="flex-1 text-center p-2 text-sm font-medium text-gray-500 rounded-md transition duration-300 cursor-pointer hover:bg-white/50 hover:text-gray-800"
+                id="TRY"
+              >
+                TRY
+              </li>
+              <li
+                class="flex-1 text-center p-2 text-sm font-medium text-gray-500 rounded-md transition duration-300 cursor-pointer hover:bg-white/50 hover:text-gray-800"
+                id="EUR"
+              >
+                EUR
+              </li>
+            </ul>
+
+            <div
+              class="result left-result flex items-center bg-white border border-gray-200 rounded-xl p-4 relative transition focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/10"
+            >
+              <input
+                class="left-input w-full border-none text-3xl font-bold text-gray-800 bg-transparent outline-none"
+                type="number"
+                value="1"
+              />
+              <span
+                class="currency-symbol text-sm font-semibold text-gray-400 ml-2"
+                >AZN</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="exchange-icon text-2xl text-brand font-bold md:pt-8 transform md:rotate-0 rotate-90"
+          >
+            ⇄
+          </div>
+
+          <div class="col w-full flex-1">
+            <p class="label-text text-sm font-medium text-gray-400 mb-2">
+              I want to buy
+            </p>
+
+            <ul
+              class="currency-types btnRight flex bg-[#f1f3f6] rounded-lg p-1 mb-5"
+            >
+              <li
+                class="flex-1 text-center p-2 text-sm font-medium text-gray-500 rounded-md transition duration-300 cursor-pointer hover:bg-white/50 hover:text-gray-800"
+                id="AZN"
+              >
+                AZN
+              </li>
+              <li
+                class="active flex-1 text-center p-2 text-sm font-medium text-gray-500 rounded-md transition duration-300 cursor-pointer hover:bg-white/50 hover:text-gray-800"
+                id="USD"
+              >
+                USD
+              </li>
+              <li
+                class="flex-1 text-center p-2 text-sm font-medium text-gray-500 rounded-md transition duration-300 cursor-pointer hover:bg-white/50 hover:text-gray-800"
+                id="TRY"
+              >
+                TRY
+              </li>
+              <li
+                class="flex-1 text-center p-2 text-sm font-medium text-gray-500 rounded-md transition duration-300 cursor-pointer hover:bg-white/50 hover:text-gray-800"
+                id="EUR"
+              >
+                EUR
+              </li>
+            </ul>
+
+            <div
+              class="result right-result flex items-center bg-white border border-gray-200 rounded-xl p-4 relative transition focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/10"
+            >
+              <input
+                class="right-input w-full border-none text-3xl font-bold text-gray-800 bg-transparent outline-none"
+                type="number"
+                disabled
+              />
+              <span
+                class="currency-symbol text-sm font-semibold text-gray-400 ml-2"
+                >USD</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
